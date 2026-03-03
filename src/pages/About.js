@@ -4,7 +4,7 @@ const values = [
   { icon: '🔐', title: 'Security First', desc: 'Every product is built with cryptographic security at its core, ensuring user funds and data are protected at all times.' },
   { icon: '🌐', title: 'Transparency', desc: 'All transactions are recorded on-chain, creating an immutable, publicly verifiable record of commerce activity.' },
   { icon: '🚀', title: 'Innovation', desc: 'We continuously push the boundaries of what decentralized commerce can achieve, shipping new features driven by community needs.' },
-  { icon: '🤝', title: 'Community', desc: 'CCC token holders govern the platform. Every major decision is put to the community, ensuring the protocol evolves for its users.' },
+  { icon: '🤝', title: 'Community', desc: 'CC token holders govern the platform. Every major decision is put to the community, ensuring the protocol evolves for its users.' },
 ];
 
 const team = [

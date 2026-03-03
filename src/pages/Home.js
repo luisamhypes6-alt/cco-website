@@ -6,7 +6,7 @@ const features = [
   { icon: '🔐', title: 'Trustless Payments', desc: 'Every transaction secured by blockchain. Smart contract escrow protects buyers and sellers, eliminating fraud and chargebacks permanently.' },
   { icon: '🌐', title: 'Borderless Commerce', desc: 'Sell globally without banking restrictions. Any wallet, any country, any currency — the decentralized marketplace has no borders.' },
   { icon: '📊', title: 'On-Chain Analytics', desc: 'Real-time, transparent transaction data recorded immutably on-chain. Merchants gain unmatched insight into their storefront performance.' },
-  { icon: '🪙', title: 'CCC Token', desc: 'Fuel the ecosystem with our native token. Stake, earn, govern, and unlock premium features across all CryptoCommerce Co products.' },
+  { icon: '🪙', title: 'CC Token', desc: 'Fuel the ecosystem with our native token. Stake, earn, govern, and unlock premium features across all CryptoCommerce Co products.' },
   { icon: '🔗', title: 'Multi-Chain Support', desc: 'Deploy on Ethereum, BNB Chain, Polygon, and more. Our cross-chain bridge enables seamless interoperability across all major networks.' },
 ];
 
@@ -95,7 +95,7 @@ export default function Home() {
               <div style={{ fontFamily: 'Orbitron, sans-serif', fontSize: '32px', fontWeight: '900', color: 'var(--accent)', marginBottom: '8px' }}>CryptoCart</div>
               <div style={{ color: 'var(--text-muted)', marginBottom: '24px', fontSize: '14px' }}>Build Decentralized E-Commerce Shops</div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', textAlign: 'left' }}>
-                {['Web3 Wallet Pay', 'Smart Contracts', 'Multi-Currency', 'Zero Chargebacks', 'Global Reach', 'CCC Token'].map(f => (
+                {['Web3 Wallet Pay', 'Smart Contracts', 'Multi-Currency', 'Zero Chargebacks', 'Global Reach', 'CC Token'].map(f => (
                   <div key={f} style={{ fontSize: '13px', color: 'var(--text-muted)', display: 'flex', gap: '6px', alignItems: 'center' }}>
                     <span style={{ color: 'var(--accent)' }}>✓</span> {f}
                   </div>

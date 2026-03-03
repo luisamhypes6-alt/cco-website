@@ -23,8 +23,8 @@ const articles = [
   },
   {
     id: 5, icon: '🪙', category: 'News', date: 'Jan 30, 2026', readTime: '4 min',
-    title: 'CCC Token Utility Expansion: Staking, Governance, and Premium Feature Access Explained',
-    excerpt: "The CCC token is more than a currency — it's the backbone of platform governance, merchant incentives, and community rewards. Here's everything you need to know about the expanded token utility framework.",
+    title: 'CC Token Utility Expansion: Staking, Governance, and Premium Feature Access Explained',
+    excerpt: "The CC token is more than a currency — it's the backbone of platform governance, merchant incentives, and community rewards. Here's everything you need to know about the expanded token utility framework.",
   },
   {
     id: 6, icon: '🛡️', category: 'Opinion', date: 'Jan 22, 2026', readTime: '7 min',
@@ -149,7 +149,7 @@ export default function Insights() {
       <section className="section-sm" style={{ background: 'var(--bg2)' }}>
         <div className="container" style={{ textAlign: 'center' }}>
           <span className="section-label">Stay Informed</span>
-          <h2 className="section-title">Subscribe to <span>CCC Insights</span></h2>
+          <h2 className="section-title">Subscribe to <span>CC Insights</span></h2>
           <p className="section-desc" style={{ margin: '0 auto 32px' }}>
             Get the latest news, research, and analysis delivered straight to your inbox.
           </p>

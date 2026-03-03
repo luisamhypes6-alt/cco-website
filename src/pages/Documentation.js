@@ -22,14 +22,14 @@ const roadmapPhases = [
     phase: 'Phase 2 — Launch',
     period: 'Q3–Q4 2026',
     title: 'Product Launch & Token',
-    items: ['CryptoCart public beta launch', 'CCC token generation event (TGE)', 'Private sale rounds', 'Merchant onboarding program', 'First exchange listings'],
+    items: ['CryptoCart public beta launch', 'CC token generation event (TGE)', 'Private sale rounds', 'Merchant onboarding program', 'First exchange listings'],
     status: 'upcoming',
   },
   {
     phase: 'Phase 3 — Growth',
     period: 'Q1–Q2 2026',
     title: 'Ecosystem Expansion',
-    items: ['Multi-chain bridge integration', 'Public sale launch', 'CCC staking & governance launch', 'Partnership program with Philippine businesses', 'Mobile app launch'],
+    items: ['Multi-chain bridge integration', 'Public sale launch', 'CC staking & governance launch', 'Partnership program with Philippine businesses', 'Mobile app launch'],
     status: 'upcoming',
   },
   {
@@ -121,7 +121,7 @@ export default function Documentation() {
               {activeSection === 'whitepaper' && (
                 <div className="doc-section">
                   <h2>📄 White Paper</h2>
-                  <p>The CryptoCommerce Co White Paper presents the technical and economic framework for a fully decentralized e-commerce ecosystem, powered by blockchain technology and governed by the CCC token community.</p>
+                  <p>The CryptoCommerce Co White Paper presents the technical and economic framework for a fully decentralized e-commerce ecosystem, powered by blockchain technology and governed by the CC token community.</p>
 
                   <h3>Executive Summary</h3>
                   <p>The global e-commerce market generates trillions of dollars annually, yet is dominated by a handful of centralized platforms that extract significant rents from merchants, restrict access to certain geographies, and maintain opaque data practices that disadvantage sellers and buyers alike.</p>
@@ -171,15 +171,15 @@ export default function Documentation() {
 
               {activeSection === 'tokenomics' && (
                 <div className="doc-section">
-                  <h2>🪙 Tokenomics — CCC Token</h2>
-                  <p>The CCC (CryptoCommerce Co) token is the native utility and governance token of the CryptoCommerce protocol. It powers merchant incentives, platform governance, staking rewards, and access to premium features.</p>
+                  <h2>🪙 Tokenomics — CC Token</h2>
+                  <p>The CC (CryptoCommerce Co) token is the native utility and governance token of the CryptoCommerce protocol. It powers merchant incentives, platform governance, staking rewards, and access to premium features.</p>
 
                   <h3>Token Overview</h3>
                   <div className="highlight-box">
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px', textAlign: 'center' }}>
                       {[
-                        { label: 'Token Name', value: 'CCC Token' },
-                        { label: 'Symbol', value: 'CCC' },
+                        { label: 'Token Name', value: 'CC Token' },
+                        { label: 'Symbol', value: 'CC' },
                         { label: 'Total Supply', value: '1,000,000,000' },
                         { label: 'Standard', value: 'ERC-20' },
                       ].map(i => (
@@ -208,9 +208,9 @@ export default function Documentation() {
                   <div className="grid-2" style={{ marginTop: '16px' }}>
                     {[
                       { icon: '🗳️', title: 'Governance', desc: 'Vote on protocol upgrades, fee parameters, and treasury allocation.' },
-                      { icon: '💎', title: 'Staking', desc: 'Stake CCC to earn yield from platform transaction fees.' },
+                      { icon: '💎', title: 'Staking', desc: 'Stake CC to earn yield from platform transaction fees.' },
                       { icon: '🚀', title: 'Premium Features', desc: 'Unlock advanced merchant tools, analytics, and priority support.' },
-                      { icon: '💳', title: 'Payment Discounts', desc: 'Pay platform fees in CCC at a significant discount vs. other tokens.' },
+                      { icon: '💳', title: 'Payment Discounts', desc: 'Pay platform fees in CC at a significant discount vs. other tokens.' },
                     ].map(u => (
                       <div className="card" key={u.title} style={{ padding: '20px' }}>
                         <div style={{ fontSize: '24px', marginBottom: '10px' }}>{u.icon}</div>
@@ -287,8 +287,8 @@ export default function Documentation() {
                     {[
                       { icon: '📈', title: 'Massive Market', desc: 'The global e-commerce market exceeds $6T annually. Web3 commerce is projected to capture 15% by 2030.' },
                       { icon: '🏆', title: 'First Mover in SEA', desc: 'CryptoCommerce Co is the leading decentralized commerce platform in Southeast Asia, with Philippine market leadership.' },
-                      { icon: '🔒', title: 'Defensible Moats', desc: 'Smart contract IP, growing merchant network effects, and the CCC token ecosystem create lasting competitive advantages.' },
-                      { icon: '💰', title: 'Revenue Model', desc: 'Protocol fees, premium merchant subscriptions, CCC token staking, and B2B white-label solutions provide diversified revenue.' },
+                      { icon: '🔒', title: 'Defensible Moats', desc: 'Smart contract IP, growing merchant network effects, and the CC token ecosystem create lasting competitive advantages.' },
+                      { icon: '💰', title: 'Revenue Model', desc: 'Protocol fees, premium merchant subscriptions, CC token staking, and B2B white-label solutions provide diversified revenue.' },
                     ].map(h => (
                       <div className="card" key={h.title} style={{ padding: '24px' }}>
                         <div style={{ fontSize: '28px', marginBottom: '12px' }}>{h.icon}</div>

@@ -136,7 +136,7 @@ export default function Contact() {
             Book a <span>Meeting</span> Today
           </h2>
           <p className="section-desc" style={{ margin: '0 auto 32px' }}>
-            Our team is ready to walk you through CryptoCart, discuss partnership opportunities, or answer any questions you have about the CCC ecosystem.
+            Our team is ready to walk you through CryptoCart, discuss partnership opportunities, or answer any questions you have about the CC ecosystem.
           </p>
           <a className="btn btn-primary" href="https://calendly.com/hire-cco-cryptocommerce/new-meeting" target="_blank" rel="noreferrer">
             📅 Schedule on Calendly

@@ -1,17 +1,15 @@
 import React from 'react';
 
 const openRoles = [
-  { title: 'Senior Solidity Developer', dept: 'Engineering', type: 'Full-time · Remote', desc: 'Lead development of our smart contract suite. Deep expertise in EVM, DeFi protocols, and security auditing required.' },
+  { title: 'Chief Technology Officer', dept: 'Product', type: 'Full-time · Remote', desc: 'Lead the technology strategy and innovation at CryptoCommerce Co. Deep expertise in blockchain architecture, scalable systems, and secure crypto solutions required.' },
+  { title: 'Lead Blockchain Engineer', dept: 'Engineering', type: 'Full-time · Remote', desc: 'Lead development of our smart contract suite. Deep expertise in EVM, DeFi protocols, and security auditing required.' },
   { title: 'Full-Stack Web3 Engineer', dept: 'Engineering', type: 'Full-time · Remote', desc: 'Build and maintain CryptoCart\'s React frontend and Web3 integration layer. Experience with ethers.js / wagmi required.' },
-  { title: 'Product Manager — Commerce', dept: 'Product', type: 'Full-time · Philippines', desc: 'Drive the CryptoCart product roadmap. Deep understanding of e-commerce flows and blockchain UX required.' },
-  { title: 'Growth & Community Manager', dept: 'Marketing', type: 'Full-time · Remote', desc: 'Own community growth across Telegram, Twitter/X, and Discord. Build the CryptoCommerce Co brand globally.' },
-  { title: 'Blockchain Researcher', dept: 'Research', type: 'Full-time · Remote', desc: 'Research emerging Layer 2 solutions, DeFi integrations, and cross-chain bridging strategies for protocol evolution.' },
-  { title: 'Business Development Manager', dept: 'Sales', type: 'Full-time · Philippines', desc: 'Identify and close merchant partnership opportunities across Southeast Asia. Web3 sales experience preferred.' },
+  { title: 'Senior Backend Engineer', dept: 'Engineering', type: 'Full-time · Remote', desc: 'Lead the design and implementation of robust backend systems. Strong experience in API development, database management, and scalable architecture required.' },
 ];
 
 const perks = [
   { icon: '🌐', title: 'Remote-First', desc: 'Work from anywhere in the world. We trust our team to deliver.' },
-  { icon: '🪙', title: 'CCC Token Allocation', desc: 'All team members receive CCC token vesting packages with competitive terms.' },
+  { icon: '🪙', title: 'CC Token Allocation', desc: 'All team members receive CC token vesting packages with competitive terms.' },
   { icon: '📚', title: 'Learning Budget', desc: '$1,500 annual budget for courses, conferences, and certifications.' },
   { icon: '🏥', title: 'Health Benefits', desc: 'Comprehensive health coverage for full-time Philippines-based employees.' },
   { icon: '🕹️', title: 'Equipment Stipend', desc: 'Full home-office setup budget provided on day one.' },
