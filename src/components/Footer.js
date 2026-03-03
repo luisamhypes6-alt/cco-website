@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="footer-grid">
           <div className="footer-brand">
             <div className="logo">
-              <div className="logo-icon">CCC</div>
+              <div className="logo-icon"></div>
               <div className="logo-text">Crypto<span>Commerce</span> Co</div>
             </div>
             <p>Bridging traditional online shopping with blockchain innovation. Building the decentralized future of e-commerce from the Philippines to the world.</p>
