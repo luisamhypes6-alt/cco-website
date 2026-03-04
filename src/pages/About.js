@@ -8,16 +8,16 @@ const values = [
 ];
 
 const team = [
-  { initials: 'CEO', name: 'Chief Executive Officer', role: 'CEO & Co-Founder', bio: 'Visionary leader driving CryptoCommerce Co\'s mission to decentralize global e-commerce through blockchain technology.' },
-  { initials: 'CTO', name: 'Chief Technology Officer', role: 'CTO & Co-Founder', bio: 'Blockchain architect with deep expertise in smart contract development, DeFi protocols, and Web3 infrastructure.' },
-  { initials: 'CMO', name: 'Chief Marketing Officer', role: 'CMO', bio: 'Growth strategist focused on building the CryptoCommerce brand and expanding our global community of merchants and users.' },
-  { initials: 'CFO', name: 'Chief Financial Officer', role: 'CFO', bio: 'Finance expert overseeing tokenomics, treasury management, and investor relations for sustainable protocol growth.' },
+  { initials: 'CEO', name: 'Ralph Alexis Torres', avatar: 'ralph.png', role: 'CEO & Co-Founder', bio: 'Visionary leader driving CryptoCommerce Co\'s mission to decentralize global e-commerce through blockchain technology.' },
+  { initials: 'CBO', name: 'Renzel Gallon', avatar: 'renzel.png', role: 'CBO & Co-Founder', bio: 'Blockchain architect with deep expertise in smart contract development, DeFi protocols, and Web3 infrastructure.' },
+  { initials: 'CMO', name: 'Veronica De Roxas', avatar: 'veronica.png', role: 'Head of Recruiters', bio: 'Talent acquisition leader focused on scaling CryptoCommerce’s team and strengthening our global network of top recruiters and candidates.' },
+  { initials: 'CFO', name: 'Danica Justo', avatar: 'danica.png', role: 'Senior Recruiter', bio: 'Experienced senior recruiter dedicated to identifying top talent and building strong candidate pipelines to support CryptoCommerce’s growth and innovation.' },
 ];
 
 const advisors = [
-  { initials: 'ADV', name: 'Blockchain Advisor', role: 'Web3 Strategy Advisor', bio: 'Veteran blockchain entrepreneur with multiple successful DeFi and Web3 product launches across global markets.' },
-  { initials: 'ADV', name: 'E-Commerce Advisor', role: 'E-Commerce Advisor', bio: 'Former executive at leading Southeast Asian e-commerce platforms with deep retail and marketplace expertise.' },
-  { initials: 'ADV', name: 'Legal & Compliance', role: 'Legal & Compliance Advisor', bio: 'Specialist in Philippine and international fintech regulation, cryptocurrency law, and corporate compliance.' },
+  { initials: 'ADV', name: 'Oleksandr Majdanyk', avatar: 'oleksandr.png', role: 'Web3 Strategy Advisor', bio: 'Veteran blockchain entrepreneur with multiple successful DeFi and Web3 product launches across global markets.' },
+  { initials: 'ADV', name: 'Pavlo Slavskyi', avatar: 'pavlo.png', role: 'E-Commerce Advisor', bio: 'Former executive at leading Southeast Asian e-commerce platforms with deep retail and marketplace expertise.' },
+  { initials: 'ADV', name: 'Denis Komendantov', avatar: 'denis.png', role: 'Legal & Compliance Advisor', bio: 'Specialist in Philippine and international fintech regulation, cryptocurrency law, and corporate compliance.' },
 ];
 
 export default function About() {
@@ -128,7 +128,12 @@ export default function About() {
           <div className="grid-4">
             {team.map(m => (
               <div className="card team-card" key={m.role}>
-                <div className="team-avatar">{m.initials}</div>
+                <div className="team-avatar" style={{
+                  backgroundImage: `url(${m.avatar})`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundSize: 'cover',
+                  backgroundOrigin: 'border-box'
+                }}></div>
                 <div className="team-name">{m.name}</div>
                 <div className="team-role">{m.role}</div>
                 <div className="team-bio">{m.bio}</div>
@@ -150,7 +155,12 @@ export default function About() {
           <div className="grid-3">
             {advisors.map(a => (
               <div className="card team-card" key={a.role}>
-                <div className="team-avatar" style={{ background: 'linear-gradient(135deg, var(--gold), #c47f00)', width: '72px', height: '72px', fontSize: '20px' }}>{a.initials}</div>
+                <div className="team-avatar" style={{
+                  backgroundImage: `url(${a.avatar})`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundSize: 'cover',
+                  backgroundOrigin: 'border-box'
+                }}></div>
                 <div className="team-name">{a.name}</div>
                 <div className="team-role">{a.role}</div>
                 <div className="team-bio">{a.bio}</div>
