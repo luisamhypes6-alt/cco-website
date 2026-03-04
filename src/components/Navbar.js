@@ -41,9 +41,9 @@ export default function Navbar() {
         </ul>
 
         <div className="nav-right">
-          <button className="theme-btn" onClick={toggleTheme} title="Toggle theme">
+          {/* <button className="theme-btn" onClick={toggleTheme} title="Toggle theme">
             {theme === 'dark' ? '☀️' : '🌙'}
-          </button>
+          </button> */}
           <a
             className="btn btn-primary"
             href="https://calendly.com/hire-cco-cryptocommerce/new-meeting"
