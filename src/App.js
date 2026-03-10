@@ -7,6 +7,7 @@ import Insights from './pages/Insights';
 import Documentation from './pages/Documentation';
 import Careers from './pages/Careers';
 import Contact from './pages/Contact';
+import Demo from './pages/Demo';
 
 export const ThemeContext = createContext();
 
@@ -21,7 +22,7 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const pages = { home: Home, about: About, insights: Insights, documentation: Documentation, careers: Careers, contact: Contact };
+  const pages = { home: Home, about: About, insights: Insights, documentation: Documentation, careers: Careers, contact: Contact, demo: Demo };
   const PageComponent = pages[page] || Home;
 
   return (
