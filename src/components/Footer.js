@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
-import { ThemeContext } from '../App';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
-  const { navigate } = useContext(ThemeContext);
+  // no longer using context-based navigation
 
   return (
     <footer className="footer">
@@ -24,20 +24,20 @@ export default function Footer() {
           <div className="footer-col">
             <h4>Platform</h4>
             <ul>
-              <li><a onClick={() => navigate('home')}>CryptoCart</a></li>
-              <li><a onClick={() => navigate('documentation')}>White Paper</a></li>
-              <li><a onClick={() => navigate('documentation')}>Tokenomics</a></li>
-              <li><a onClick={() => navigate('documentation')}>Roadmap</a></li>
+              <li><Link to="/">CryptoCart</Link></li>
+              <li><Link to="/documentation">White Paper</Link></li>
+              <li><Link to="/documentation">Tokenomics</Link></li>
+              <li><Link to="/documentation">Roadmap</Link></li>
             </ul>
           </div>
 
           <div className="footer-col">
             <h4>Company</h4>
             <ul>
-              <li><a onClick={() => navigate('about')}>About Us</a></li>
-              <li><a onClick={() => navigate('insights')}>Insights</a></li>
-              <li><a onClick={() => navigate('careers')}>Careers</a></li>
-              <li><a onClick={() => navigate('contact')}>Contact</a></li>
+              <li><Link to="/about">About Us</Link></li>
+              <li><Link to="/insights">Insights</Link></li>
+              <li><Link to="/careers">Careers</Link></li>
+              <li><Link to="/contact">Contact</Link></li>
             </ul>
           </div>
 

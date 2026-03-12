@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { ThemeContext } from '../App';
+import React from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 
 const features = [
   { icon: '🛒', title: 'CryptoCart', desc: 'Build fully decentralized e-commerce storefronts powered by Web3 wallets and smart contracts. Accept crypto natively — no intermediaries.' },
@@ -18,7 +18,7 @@ const useCases = [
 ];
 
 export default function Home() {
-  const { navigate } = useContext(ThemeContext);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -41,9 +41,9 @@ export default function Home() {
               building secure, transparent, and borderless shopping experiences for the digital age.
             </p>
             <div className="hero-actions">
-              <a className="btn btn-primary" onClick={() => navigate('documentation')}>
+              <Link className="btn btn-primary" to="/documentation">
                 📄 Read White Paper
-              </a>
+              </Link>
               <a className="btn btn-outline" href="https://calendly.com/hire-cco-cryptocommerce/new-meeting" target="_blank" rel="noreferrer">
                 📅 Book a Demo
               </a>
@@ -165,9 +165,9 @@ export default function Home() {
             <a className="btn btn-primary" href="https://calendly.com/hire-cco-cryptocommerce/new-meeting" target="_blank" rel="noreferrer">
               📅 Schedule a Meeting
             </a>
-            <a className="btn btn-outline" onClick={() => navigate('documentation')}>
+            <Link className="btn btn-outline" to="/documentation">
               📄 Explore Documentation
-            </a>
+            </Link>
           </div>
         </div>
       </section>

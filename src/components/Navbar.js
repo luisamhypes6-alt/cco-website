@@ -1,42 +1,42 @@
 import React, { useState, useContext } from 'react';
+import { NavLink } from 'react-router-dom';
 import { ThemeContext } from '../App';
 
 const navItems = [
-  { label: 'Home', key: 'home' },
-  { label: 'About', key: 'about' },
-  { label: 'Insights', key: 'insights' },
-  { label: 'Documentation', key: 'documentation' },
-  { label: '⚡ Demo', key: 'demo' },
-  { label: 'Careers', key: 'careers' },
-  { label: 'Contact', key: 'contact' },
+  { label: 'Home', path: '/' },
+  { label: 'About', path: '/about' },
+  { label: 'Insights', path: '/insights' },
+  { label: 'Documentation', path: '/documentation' },
+  { label: 'Careers', path: '/careers' },
+  { label: 'Contact', path: '/contact' },
+  // { label: '⚡ Demo', path: '/demo' },
 ];
 
 export default function Navbar() {
-  const { theme, toggleTheme, navigate, page } = useContext(ThemeContext);
+  const { theme, toggleTheme } = useContext(ThemeContext);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const handleNav = (key) => {
-    navigate(key);
-    setMenuOpen(false);
-  };
+  const closeMenu = () => setMenuOpen(false);
 
   return (
     <nav className="nav">
       <div className="nav-inner">
-        <a className="logo" onClick={() => handleNav('home')}>
+        <NavLink className="logo" to="/" onClick={closeMenu}>
           <div className="logo-icon"></div>
           <div className="logo-text">Crypto<span>Commerce</span> Co</div>
-        </a>
+        </NavLink>
 
         <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
           {navItems.map(item => (
-            <li key={item.key}>
-              <a
-                className={page === item.key ? 'active' : ''}
-                onClick={() => handleNav(item.key)}
+            <li key={item.path}>
+              <NavLink
+                to={item.path}
+                end={item.path === '/'}
+                className={({ isActive }) => (isActive ? 'active' : '')}
+                onClick={closeMenu}
               >
                 {item.label}
-              </a>
+              </NavLink>
             </li>
           ))}
         </ul>

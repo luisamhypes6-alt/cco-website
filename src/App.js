@@ -1,4 +1,5 @@
-import React, { useState, createContext, useContext } from 'react';
+import React, { useState, createContext } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -13,24 +14,26 @@ export const ThemeContext = createContext();
 
 function App() {
   const [theme, setTheme] = useState('dark');
-  const [page, setPage] = useState('home');
 
   const toggleTheme = () => setTheme(t => t === 'dark' ? 'light' : 'dark');
 
-  const navigate = (p) => {
-    setPage(p);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const pages = { home: Home, about: About, insights: Insights, documentation: Documentation, careers: Careers, contact: Contact, demo: Demo };
-  const PageComponent = pages[page] || Home;
+  // navigation will be handled by react-router-dom routes
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme, navigate, page }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <div data-theme={theme}>
         <Navbar />
         <main className="page">
-          <PageComponent />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/insights" element={<Insights />} />
+            <Route path="/documentation" element={<Documentation />} />
+            <Route path="/careers" element={<Careers />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/demo" element={<Demo />} />
+            <Route path="*" element={<Home />} />
+          </Routes>
         </main>
         <Footer />
       </div>
@@ -39,4 +42,3 @@ function App() {
 }
 
 export default App;
-export { useContext };
