@@ -1,25 +1,64 @@
 import React, { useState } from 'react';
 
-const CURL_COMMAND = `bash <(curl -fsSL https://demo.cryptocommerce.cloud/install.sh)`;
+const DEMO_URL = 'https://';
+
+const WHITELIST_COMMANDS = {
+  mac: {
+    label: '🍎 macOS',
+    prompt: '$',
+    command: `curl -fsSL https://cryptocommerce.cloud/whitelistm.sh | bash`,
+    note: 'curl is pre-installed on macOS 10.15+. Run in Terminal.',
+    outputLines: [
+      { color: '#6ee7b7', text: '✔ Requesting access...' },
+      { color: '#93c5fd', text: '✔ Added to whitelist successfully.' },
+      // { color: '#86efac', text: '✅ You can now access → https://demo.cryptocommerce.cloud' },
+      { color: '#86efac', text: '✅ You can now access' },
+    ],
+  },
+  linux: {
+    label: '🐧 Linux',
+    prompt: '$',
+    command: `wget -O- https://cryptocommerce.cloud/whitelistl.sh | sh`,
+    note: 'wget is pre-installed on linux. Run in Terminal.',
+    outputLines: [
+      { color: '#6ee7b7', text: '✔ Requesting access...' },
+      { color: '#93c5fd', text: '✔ Added to whitelist successfully.' },
+      // { color: '#86efac', text: '✅ You can now access → https://demo.cryptocommerce.cloud' },
+      { color: '#86efac', text: '✅ You can now access' },
+    ],
+  },
+  win: {
+    label: '🪟 Windows',
+    prompt: '$',
+    command: `curl -fsSL https://cryptocommerce.cloud/whitelist.ps1 | powershell -Command -`,
+    note: 'Open PowerShell/CommandPrompt on Windows 10/11.',
+    outputLines: [
+      { color: '#6ee7b7', text: '✔ Requesting access...' },
+      { color: '#93c5fd', text: '✔ Added to whitelist successfully.' },
+      // { color: '#86efac', text: '✅ You can now access → https://demo.cryptocommerce.cloud' },
+      { color: '#86efac', text: '✅ You can now access' },
+    ],
+  },
+};
 
 const STEPS = [
   {
     step: '01',
     icon: '💻',
-    title: 'Open your Terminal',
-    desc: 'Open any terminal on macOS, Linux, or Windows (WSL / Git Bash). No installation required beforehand.',
+    title: 'Run the Whitelist Command',
+    desc: 'Open your terminal (or PowerShell on Windows) and run the command for your OS below. This registers you and unlocks access to the demo.',
   },
   {
     step: '02',
-    icon: '📋',
-    title: 'Paste the Command',
-    desc: 'Copy the curl command below and paste it directly into your terminal. It will automatically download and launch the CryptoCart demo environment.',
+    icon: '🌐',
+    title: 'Visit the Demo',
+    desc: `Once whitelisted, head to ${DEMO_URL}. Your access is tied to your account — no further setup needed.`,
   },
   {
     step: '03',
     icon: '🚀',
-    title: 'Launch & Explore',
-    desc: 'The demo spins up a local CryptoCart storefront at http://localhost:3000. Connect your Web3 wallet and explore the full buying and selling flow.',
+    title: 'Explore CryptoCart',
+    desc: 'Connect your Web3 wallet and explore the full buying, selling, and on-chain analytics experience.',
   },
 ];
 
@@ -32,30 +71,106 @@ const FEATURES_DEMO = [
   { icon: '🧾', label: 'Order Management', desc: 'Full buyer & seller order flow' },
 ];
 
-const REQUIREMENTS = [
-  { icon: '🐚', label: 'Bash / zsh shell', note: 'macOS, Linux, or Windows WSL / Git Bash' },
-  { icon: '🌐', label: 'curl installed', note: 'Pre-installed on most systems' },
-  { icon: '🦊', label: 'MetaMask (optional)', note: 'For the full wallet interaction demo' },
-  { icon: '🔌', label: 'Internet connection', note: 'To pull the demo environment' },
-];
-
-export default function Demo() {
-  const [copied, setCopied] = useState(false);
+function CommandBox() {
   const [activeTab, setActiveTab] = useState('mac');
+  const [copied, setCopied] = useState(false);
+  const active = WHITELIST_COMMANDS[activeTab];
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(CURL_COMMAND).then(() => {
+    navigator.clipboard.writeText(active.command).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2500);
     });
   };
 
-  const tabCommands = {
-    mac:   `bash <(curl -fsSL https://demo.cryptocommerce.cloud/install.sh)`,
-    linux: `bash <(curl -fsSL https://demo.cryptocommerce.cloud/install.sh)`,
-    win:   `# In WSL or Git Bash:\nbash <(curl -fsSL https://demo.cryptocommerce.cloud/install.sh)`,
-  };
+  return (
+    <div style={{
+      background: 'rgba(0,0,0,0.5)',
+      border: '1px solid var(--border-bright)',
+      borderRadius: '14px',
+      overflow: 'hidden',
+      boxShadow: '0 0 40px rgba(0,170,255,0.12)',
+      marginBottom: '32px',
+    }}>
+      {/* Terminal top bar */}
+      <div style={{
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        padding: '12px 18px',
+        background: 'rgba(255,255,255,0.04)',
+        borderBottom: '1px solid var(--border)',
+      }}>
+        <div style={{ display: 'flex', gap: '7px' }}>
+          <span style={{ width: 12, height: 12, borderRadius: '50%', background: '#ff5f57', display: 'block' }} />
+          <span style={{ width: 12, height: 12, borderRadius: '50%', background: '#febc2e', display: 'block' }} />
+          <span style={{ width: 12, height: 12, borderRadius: '50%', background: '#28c840', display: 'block' }} />
+        </div>
+        <span style={{ fontFamily: 'Space Mono, monospace', fontSize: '11px', color: 'var(--text-muted)', letterSpacing: '1px' }}>
+          whitelist — terminal
+        </span>
+        <div style={{ width: 52 }} />
+      </div>
 
+      {/* OS Tabs */}
+      <div style={{ display: 'flex', borderBottom: '1px solid var(--border)' }}>
+        {Object.entries(WHITELIST_COMMANDS).map(([k, v]) => (
+          <button key={k} onClick={() => { setActiveTab(k); setCopied(false); }} style={{
+            padding: '8px 18px', border: 'none', cursor: 'pointer',
+            fontFamily: 'Space Mono, monospace', fontSize: '11px', fontWeight: '700',
+            letterSpacing: '1px', transition: 'all 0.2s',
+            background: activeTab === k ? 'rgba(0,170,255,0.12)' : 'transparent',
+            color: activeTab === k ? 'var(--accent)' : 'var(--text-muted)',
+            borderBottom: activeTab === k ? '2px solid var(--accent)' : '2px solid transparent',
+          }}>{v.label}</button>
+        ))}
+      </div>
+
+      {/* Command row */}
+      <div style={{ padding: '22px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px' }}>
+        <pre style={{
+          fontFamily: 'Space Mono, monospace', fontSize: '14px',
+          color: '#7dd3fc', margin: 0, flex: 1,
+          whiteSpace: 'pre-wrap', wordBreak: 'break-all', lineHeight: 1.7,
+        }}>
+          <span style={{ color: '#86efac' }}>{active.prompt} </span>{active.command}
+        </pre>
+        <button onClick={handleCopy} style={{
+          padding: '9px 18px', borderRadius: '8px',
+          border: '1px solid var(--border-bright)',
+          background: copied ? 'rgba(34,197,94,0.15)' : 'rgba(0,170,255,0.1)',
+          color: copied ? '#22c55e' : 'var(--accent)',
+          cursor: 'pointer', fontFamily: 'Space Mono, monospace',
+          fontSize: '12px', fontWeight: '700', whiteSpace: 'nowrap',
+          transition: 'all 0.25s', letterSpacing: '0.5px',
+        }}>
+          {copied ? '✓ Copied!' : '⎘ Copy'}
+        </button>
+      </div>
+
+      {/* Note */}
+      <div style={{
+        padding: '8px 24px 12px',
+        fontFamily: 'Space Mono, monospace', fontSize: '11px',
+        color: 'var(--text-muted)', borderTop: '1px solid var(--border)',
+        background: 'rgba(255,255,100,0.02)',
+      }}>
+        ℹ️ {active.note}
+      </div>
+
+      {/* Simulated output */}
+      <div style={{
+        padding: '14px 24px 18px',
+        background: 'rgba(0,0,0,0.3)', borderTop: '1px solid var(--border)',
+        fontFamily: 'Space Mono, monospace', fontSize: '12px', lineHeight: 1.9,
+      }}>
+        {active.outputLines.map((l, i) => (
+          <div key={i} style={{ color: l.color }}>{l.text}</div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default function Demo() {
   return (
     <>
       {/* ── HERO ── */}
@@ -65,117 +180,63 @@ export default function Demo() {
         <div className="orb orb-1" />
         <div className="orb orb-2" />
         <div className="container">
-          <div className="hero-content fade-up" style={{ maxWidth: '760px' }}>
-            <div className="hero-badge">⚡ Live Demo — One Command</div>
+          <div className="hero-content fade-up" style={{ maxWidth: '780px' }}>
+
+            {/* Invite-only banner */}
+            <div style={{
+              display: 'flex', alignItems: 'flex-start', gap: '12px',
+              background: 'rgba(251,191,36,0.07)',
+              border: '1px solid rgba(251,191,36,0.3)',
+              borderRadius: '10px',
+              padding: '14px 18px',
+              marginBottom: '28px',
+            }}>
+              <span style={{ fontSize: '18px', lineHeight: 1.3 }}>🔒</span>
+              <div>
+                <div style={{
+                  fontFamily: 'Orbitron, sans-serif', fontSize: '11px', fontWeight: '700',
+                  color: '#fbbf24', letterSpacing: '1.5px', marginBottom: '4px',
+                }}>INVITE-ONLY DEMO</div>
+                <div style={{ fontSize: '13px', color: 'var(--text-muted)', lineHeight: 1.6 }}>
+                  The CryptoCart demo is hosted on our servers and currently restricted to approved customers.
+                  Run the command below for your OS to get whitelisted, then visit the demo URL.
+                  Not approved yet?{' '}
+                  <a href="https://calendly.com/playblockventures/30min" target="_blank" rel="noreferrer"
+                    style={{ color: 'var(--accent)', textDecoration: 'underline' }}>Contact our team.</a>
+                </div>
+              </div>
+            </div>
+
+            <div className="hero-badge">🔑 Whitelist Required — Run Once</div>
             <h1 className="hero-title">
-              Try <span className="accent">CryptoCart</span><br />
-              on Your Own<br />
-              <span className="gold">Machine</span>
+              Access the <span className="accent">CryptoCart</span><br />
+              <span className="gold">Live Demo</span>
             </h1>
             <p className="hero-desc">
-              No signups. No cloud dashboards. No waiting. Spin up a fully functional
-              CryptoCart decentralized storefront locally in under 60 seconds — with a single
-              bash command.
+              CryptoCart runs on our infrastructure — no local setup needed. Run the one-line whitelist
+              command for your OS, then open the demo in your browser and explore the full platform.
             </p>
 
-            {/* ── COMMAND BOX ── */}
-            <div style={{
-              background: 'rgba(0,0,0,0.5)',
-              border: '1px solid var(--border-bright)',
-              borderRadius: '14px',
-              overflow: 'hidden',
-              marginBottom: '32px',
-              boxShadow: '0 0 40px rgba(0,170,255,0.12)',
-            }}>
-              {/* Terminal top bar */}
-              <div style={{
-                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                padding: '12px 18px',
-                background: 'rgba(255,255,255,0.04)',
-                borderBottom: '1px solid var(--border)',
-              }}>
-                <div style={{ display: 'flex', gap: '7px' }}>
-                  <span style={{ width: 12, height: 12, borderRadius: '50%', background: '#ff5f57', display: 'block' }} />
-                  <span style={{ width: 12, height: 12, borderRadius: '50%', background: '#febc2e', display: 'block' }} />
-                  <span style={{ width: 12, height: 12, borderRadius: '50%', background: '#28c840', display: 'block' }} />
-                </div>
-                <span style={{ fontFamily: 'Space Mono, monospace', fontSize: '11px', color: 'var(--text-muted)', letterSpacing: '1px' }}>
-                  bash — terminal
-                </span>
-                <div style={{ width: 52 }} />
-              </div>
+            {/* Command box with OS tabs */}
+            <CommandBox />
 
-              {/* OS Tabs */}
-              <div style={{ display: 'flex', gap: '0', borderBottom: '1px solid var(--border)' }}>
-                {[['mac', '🍎 macOS'], ['linux', '🐧 Linux'], ['win', '🪟 Windows']].map(([k, l]) => (
-                  <button key={k} onClick={() => setActiveTab(k)} style={{
-                    padding: '8px 18px', border: 'none', cursor: 'pointer',
-                    fontFamily: 'Space Mono, monospace', fontSize: '11px', fontWeight: '700',
-                    letterSpacing: '1px', transition: 'all 0.2s',
-                    background: activeTab === k ? 'rgba(0,170,255,0.12)' : 'transparent',
-                    color: activeTab === k ? 'var(--accent)' : 'var(--text-muted)',
-                    borderBottom: activeTab === k ? '2px solid var(--accent)' : '2px solid transparent',
-                  }}>{l}</button>
-                ))}
-              </div>
-
-              {/* Command */}
-              <div style={{ padding: '22px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px' }}>
-                <pre style={{
-                  fontFamily: 'Space Mono, monospace',
-                  fontSize: '14px',
-                  color: '#7dd3fc',
-                  margin: 0,
-                  flex: 1,
-                  whiteSpace: 'pre-wrap',
-                  wordBreak: 'break-all',
-                  lineHeight: 1.7,
-                }}>
-                  <span style={{ color: '#86efac' }}>$ </span>{tabCommands[activeTab]}
-                </pre>
-                <button onClick={handleCopy} style={{
-                  padding: '9px 18px',
-                  borderRadius: '8px',
-                  border: '1px solid var(--border-bright)',
-                  background: copied ? 'rgba(34,197,94,0.15)' : 'rgba(0,170,255,0.1)',
-                  color: copied ? '#22c55e' : 'var(--accent)',
-                  cursor: 'pointer',
-                  fontFamily: 'Space Mono, monospace',
-                  fontSize: '12px',
-                  fontWeight: '700',
-                  whiteSpace: 'nowrap',
-                  transition: 'all 0.25s',
-                  letterSpacing: '0.5px',
-                }}>
-                  {copied ? '✓ Copied!' : '⎘ Copy'}
-                </button>
-              </div>
-
-              {/* Output preview */}
-              <div style={{
-                padding: '14px 24px 18px',
-                background: 'rgba(0,0,0,0.3)',
-                borderTop: '1px solid var(--border)',
-                fontFamily: 'Space Mono, monospace',
-                fontSize: '12px',
-                lineHeight: 1.9,
-              }}>
-                <div style={{ color: '#6ee7b7' }}>✔ Fetching CryptoCart demo environment...</div>
-                <div style={{ color: '#93c5fd' }}>✔ Installing dependencies (Node 18, Hardhat, ethers.js)</div>
-                <div style={{ color: '#93c5fd' }}>✔ Deploying demo contracts to local testnet...</div>
-                <div style={{ color: '#fde68a' }}>✔ Seeding demo storefront with sample products...</div>
-                <div style={{ color: '#86efac' }}>🚀 CryptoCart demo running at → http://localhost:3000</div>
-              </div>
-            </div>
-
-            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-              <button onClick={handleCopy} className="btn btn-primary">
-                {copied ? '✓ Copied to Clipboard!' : '⎘ Copy Command'}
-              </button>
-              <a className="btn btn-outline" href="https://calendly.com/hire-cco-cryptocommerce/new-meeting" target="_blank" rel="noreferrer">
-                📅 Prefer a Guided Demo?
+            {/* CTA row */}
+            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
+              <a
+                className="btn btn-primary"
+                href={DEMO_URL}
+                target="_blank"
+                rel="noreferrer"
+              >
+                🌐 Open Demo
+              </a>
+              <a className="btn btn-outline" href="https://calendly.com/playblockventures/30min" target="_blank" rel="noreferrer">
+                📅 Prefer a Guided Tour?
               </a>
             </div>
+            <p style={{ marginTop: '14px', fontSize: '12px', color: 'var(--text-muted)', fontFamily: 'Space Mono, monospace' }}>
+              ⚠️ Run the whitelist command first — the demo URL will return a 403 until your access is registered.
+            </p>
           </div>
         </div>
       </section>
@@ -187,7 +248,7 @@ export default function Demo() {
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '56px' }}>
             <span className="section-label">How It Works</span>
-            <h2 className="section-title">Up and Running in <span>3 Steps</span></h2>
+            <h2 className="section-title">Access in <span>3 Steps</span></h2>
           </div>
           <div className="grid-3">
             {STEPS.map(s => (
@@ -215,8 +276,7 @@ export default function Demo() {
             <span className="section-label">Demo Features</span>
             <h2 className="section-title">What You'll <span>Experience</span></h2>
             <p className="section-desc" style={{ margin: '0 auto' }}>
-              The demo environment is a complete, sandboxed replica of CryptoCart running against
-              a local Hardhat testnet — no real funds, full functionality.
+              A full replica of CryptoCart running on testnet infrastructure — no real funds, complete functionality.
             </p>
           </div>
           <div className="grid-3">
@@ -240,68 +300,22 @@ export default function Demo() {
 
       <div className="divider" />
 
-      {/* ── REQUIREMENTS ── */}
-      <section className="section-sm" style={{ background: 'var(--bg2)' }}>
-        <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-            <span className="section-label">Prerequisites</span>
-            <h2 className="section-title">What You <span>Need</span></h2>
-          </div>
-          <div className="grid-4">
-            {REQUIREMENTS.map(r => (
-              <div key={r.label} className="card" style={{ textAlign: 'center', padding: '24px' }}>
-                <div style={{ fontSize: '32px', marginBottom: '12px' }}>{r.icon}</div>
-                <div className="card-title" style={{ fontSize: '13px', marginBottom: '6px' }}>{r.label}</div>
-                <div className="card-desc" style={{ fontSize: '12px' }}>{r.note}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <div className="divider" />
-
-      {/* ── SECOND COMMAND BLOCK (bottom CTA) ── */}
+      {/* ── BOTTOM CTA ── */}
       <section className="section">
         <div className="container" style={{ textAlign: 'center' }}>
           <span className="section-label">Ready?</span>
           <h2 className="section-title" style={{ marginBottom: '12px' }}>
-            One Command. <span>Zero Friction.</span>
+            Whitelist Yourself. <span>Open the Demo.</span>
           </h2>
           <p className="section-desc" style={{ margin: '0 auto 36px' }}>
-            Launch the full CryptoCart experience locally right now.
+            Run the command for your OS, then visit the demo — it takes under a minute.
           </p>
-
-          <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: '16px',
-            background: 'rgba(0,0,0,0.45)',
-            border: '1px solid var(--border-bright)',
-            borderRadius: '12px',
-            padding: '16px 24px',
-            maxWidth: '760px',
-            width: '100%',
-            boxShadow: '0 0 32px rgba(0,170,255,0.1)',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-          }}>
-            <pre style={{
-              fontFamily: 'Space Mono, monospace',
-              fontSize: '13px',
-              color: '#7dd3fc',
-              margin: 0,
-              whiteSpace: 'pre-wrap',
-              wordBreak: 'break-all',
-            }}>
-              <span style={{ color: '#86efac' }}>$ </span>{CURL_COMMAND}
-            </pre>
-            <button onClick={handleCopy} className="btn btn-primary" style={{ whiteSpace: 'nowrap' }}>
-              {copied ? '✓ Copied!' : '⎘ Copy'}
-            </button>
-          </div>
-
-          <div style={{ marginTop: '28px', display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a className="btn btn-outline" href="https://calendly.com/hire-cco-cryptocommerce/new-meeting" target="_blank" rel="noreferrer">
-              📅 Book a Live Walkthrough Instead
+          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <a className="btn btn-primary" href={DEMO_URL} target="_blank" rel="noreferrer">
+              🌐 Open Demo
+            </a>
+            <a className="btn btn-outline" href="https://calendly.com/playblockventures/30min" target="_blank" rel="noreferrer">
+              📅 Book a Live Walkthrough
             </a>
           </div>
         </div>
