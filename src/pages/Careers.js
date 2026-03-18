@@ -5,6 +5,7 @@ const openRoles = [
   { title: 'Lead Blockchain Engineer', dept: 'Engineering', type: 'Full-time · Remote', desc: 'Lead development of our smart contract suite. Deep expertise in EVM, DeFi protocols, and security auditing required.' },
   { title: 'Full-Stack Web3 Engineer', dept: 'Engineering', type: 'Full-time · Remote', desc: 'Build and maintain CryptoCart\'s React frontend and Web3 integration layer. Experience with ethers.js / wagmi required.' },
   { title: 'Senior Backend Engineer', dept: 'Engineering', type: 'Full-time · Remote', desc: 'Lead the design and implementation of robust backend systems. Strong experience in API development, database management, and scalable architecture required.' },
+  { title: 'Blockchain & Web3 Advisor', dept: 'Product', type: 'Part-time · Remote', desc: 'Provide strategic guidance on blockchain architecture, Web3 ecosystem positioning, and tokenomics. Strong network in the blockchain, DeFi, and investment community with proven experience in Web3 advisory or operator roles required.' },
 ];
 
 const perks = [
