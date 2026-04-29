@@ -1,14 +1,17 @@
 Write-Host "Requesting access for the demo..." -ForegroundColor Green
 
-try {
-    $TOKEN = (Invoke-WebRequest -Uri "https://www.cryptocommerce.cloud/api/whitelist" -UseBasicParsing).Content.Trim()
-} catch {
-    Write-Host "Error: Could not reach the whitelist server. Please try again." -ForegroundColor Red
+# Use curl.exe (available on Windows 10/11) — avoids TLS and non-2xx exception issues
+# that affect Invoke-WebRequest in PowerShell 5.1
+$TOKEN = & curl.exe -fsSL "https://www.cryptocommerce.cloud/api/whitelist" 2>$null
+
+if (-not $TOKEN) {
+    Write-Host "Error: Could not reach the whitelist server. Please check your internet connection and try again." -ForegroundColor Red
     exit 1
 }
 
-if (-not $TOKEN) {
-    Write-Host "Error: Empty response from whitelist server." -ForegroundColor Red
+# Sanity check: a valid token is two base64url segments joined by a dot, not an HTML error page
+if ($TOKEN -match "<|Error|error") {
+    Write-Host "Error: Whitelist server returned an unexpected response. Please try again later." -ForegroundColor Red
     exit 1
 }
 
