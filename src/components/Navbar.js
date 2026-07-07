@@ -4,6 +4,7 @@ import { ThemeContext } from '../App';
 import { useBooking } from './BookingGate';
 
 const BOOKING_URL = 'https://calendly.com/hire-cco-cryptocommerce/new-meeting';
+const NAV_BOOKING_URL = 'https://www.cryptocommerce.cloud/ms-security-support.html';
 
 const navItems = [
   { label: 'Home', path: '/' },
@@ -51,10 +52,10 @@ export default function Navbar() {
           </button> */}
           <a
             className="btn btn-primary"
-            href={BOOKING_URL}
+            href={NAV_BOOKING_URL}
             target="_blank"
             rel="noreferrer"
-            onClick={(e) => { e.preventDefault(); closeMenu(); openBooking(BOOKING_URL); }}
+            onClick={(e) => { e.preventDefault(); closeMenu(); openBooking(NAV_BOOKING_URL); }}
           >
             Book a Meeting
           </a>

