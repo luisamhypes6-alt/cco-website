@@ -1,6 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ThemeContext } from '../App';
+import { useBooking } from './BookingGate';
+
+const BOOKING_URL = 'https://calendly.com/hire-cco-cryptocommerce/new-meeting';
 
 const navItems = [
   { label: 'Home', path: '/' },
@@ -14,6 +17,7 @@ const navItems = [
 
 export default function Navbar() {
   const { theme, toggleTheme } = useContext(ThemeContext);
+  const { openBooking } = useBooking();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const closeMenu = () => setMenuOpen(false);
@@ -47,9 +51,10 @@ export default function Navbar() {
           </button> */}
           <a
             className="btn btn-primary"
-            href="https://calendly.com/hire-cco-cryptocommerce/new-meeting"
+            href={BOOKING_URL}
             target="_blank"
             rel="noreferrer"
+            onClick={(e) => { e.preventDefault(); closeMenu(); openBooking(BOOKING_URL); }}
           >
             Book a Meeting
           </a>

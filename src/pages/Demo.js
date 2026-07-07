@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useBooking } from '../components/BookingGate';
 
 const DEMO_URL = 'https://demo.cryptocommerce.cloud';
+const TOUR_URL = 'https://calendly.com/playblockventures/30min';
 
 const WHITELIST_COMMANDS = {
   mac: {
@@ -201,6 +203,7 @@ function CommandBox() {
 }
 
 export default function Demo() {
+  const { openBooking } = useBooking();
   return (
     <>
       {/* ── HERO ── */}
@@ -271,9 +274,10 @@ export default function Demo() {
                   The demo environment is restricted to approved customers.
                   Not approved yet?{' '}
                   <a
-                    href="https://calendly.com/playblockventures/30min"
+                    href={TOUR_URL}
                     target="_blank"
                     rel="noreferrer"
+                    onClick={(e) => { e.preventDefault(); openBooking(TOUR_URL); }}
                     style={{ color: 'var(--accent)', textDecoration: 'none', fontWeight: '600' }}
                   >
                     Contact our team →
@@ -294,9 +298,10 @@ export default function Demo() {
                 </a>
                 <a
                   className="btn btn-outline"
-                  href="https://calendly.com/playblockventures/30min"
+                  href={TOUR_URL}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={(e) => { e.preventDefault(); openBooking(TOUR_URL); }}
                   style={{ padding: '12px 24px', fontSize: '14px' }}
                 >
                   📅 Book a Guided Tour
@@ -467,9 +472,10 @@ export default function Demo() {
               </a>
               <a
                 className="btn btn-outline"
-                href="https://calendly.com/playblockventures/30min"
+                href={TOUR_URL}
                 target="_blank"
                 rel="noreferrer"
+                onClick={(e) => { e.preventDefault(); openBooking(TOUR_URL); }}
                 style={{ padding: '13px 28px', fontSize: '15px' }}
               >
                 📅 Book a Live Walkthrough

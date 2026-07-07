@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useBooking } from './BookingGate';
+
+const BOOKING_URL = 'https://calendly.com/hire-cco-cryptocommerce/new-meeting';
 
 export default function Footer() {
-  // no longer using context-based navigation
+  const { openBooking } = useBooking();
 
   return (
     <footer className="footer">
@@ -47,7 +50,7 @@ export default function Footer() {
               <li><a href="https://cryptocommerce.nuclino-site.com/White%20Paper-2a469bca-2c45-415b-b54c-9faffe43d791" target="_blank" rel="noreferrer">Documentation</a></li>
               <li><a href="https://cryptocommerce.nuclino-site.com/Pitch%20Deck-c7f00010-c5f9-486c-b8a0-a8fbd7af58bb" target="_blank" rel="noreferrer">Pitch Deck</a></li>
               <li><a href="https://www.jotform.com/form/253523983500153" target="_blank" rel="noreferrer">Apply Now</a></li>
-              <li><a href="https://calendly.com/hire-cco-cryptocommerce/new-meeting" target="_blank" rel="noreferrer">Schedule Meeting</a></li>
+              <li><a href={BOOKING_URL} target="_blank" rel="noreferrer" onClick={(e) => { e.preventDefault(); openBooking(BOOKING_URL); }}>Schedule Meeting</a></li>
             </ul>
           </div>
         </div>

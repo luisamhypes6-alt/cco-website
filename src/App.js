@@ -9,6 +9,7 @@ import Documentation from './pages/Documentation';
 import Careers from './pages/Careers';
 import Contact from './pages/Contact';
 import Demo from './pages/Demo';
+import { BookingProvider } from './components/BookingGate';
 
 export const ThemeContext = createContext();
 
@@ -21,6 +22,7 @@ function App() {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      <BookingProvider>
       <div data-theme={theme}>
         <Navbar />
         <main className="page">
@@ -37,6 +39,7 @@ function App() {
         </main>
         <Footer />
       </div>
+      </BookingProvider>
     </ThemeContext.Provider>
   );
 }

@@ -1,5 +1,8 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useBooking } from '../components/BookingGate';
+
+const BOOKING_URL = 'https://calendly.com/hire-cco-cryptocommerce/new-meeting';
 
 const features = [
   { icon: '🛒', title: 'CryptoCart', desc: 'Build fully decentralized e-commerce storefronts powered by Web3 wallets and smart contracts. Accept crypto natively — no intermediaries.' },
@@ -19,6 +22,7 @@ const useCases = [
 
 export default function Home() {
   const navigate = useNavigate();
+  const { openBooking } = useBooking();
 
   return (
     <>
@@ -44,7 +48,7 @@ export default function Home() {
               <Link className="btn btn-primary" to="/documentation">
                 📄 Read White Paper
               </Link>
-              <a className="btn btn-outline" href="https://calendly.com/hire-cco-cryptocommerce/new-meeting" target="_blank" rel="noreferrer">
+              <a className="btn btn-outline" href={BOOKING_URL} target="_blank" rel="noreferrer" onClick={(e) => { e.preventDefault(); openBooking(BOOKING_URL); }}>
                 📅 Book a Demo
               </a>
             </div>
@@ -162,7 +166,7 @@ export default function Home() {
             Whether you're a merchant, developer, or investor — there's a place for you here.
           </p>
           <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a className="btn btn-primary" href="https://calendly.com/hire-cco-cryptocommerce/new-meeting" target="_blank" rel="noreferrer">
+            <a className="btn btn-primary" href={BOOKING_URL} target="_blank" rel="noreferrer" onClick={(e) => { e.preventDefault(); openBooking(BOOKING_URL); }}>
               📅 Schedule a Meeting
             </a>
             <Link className="btn btn-outline" to="/documentation">

@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { useBooking } from '../components/BookingGate';
+
+const BOOKING_URL = 'https://calendly.com/hire-cco-cryptocommerce/new-meeting';
 
 const tokenAllocation = [
   { label: 'Community & Ecosystem', pct: 35, color: '#00aaff' },
@@ -52,6 +55,7 @@ const sections = ['whitepaper', 'tokenomics', 'roadmap', 'pitchdeck'];
 
 export default function Documentation() {
   const [activeSection, setActiveSection] = useState('whitepaper');
+  const { openBooking } = useBooking();
 
   return (
     <>
@@ -316,7 +320,7 @@ export default function Documentation() {
                       <div style={{ fontFamily: 'Orbitron, sans-serif', fontSize: '20px', fontWeight: '700', color: 'var(--text)', marginBottom: '8px' }}>Interested in Investing?</div>
                       <p style={{ color: 'var(--text-muted)', fontSize: '14px', marginBottom: '20px' }}>Schedule a meeting with our team to access the full pitch deck and discuss investment opportunities.</p>
                       <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                        <a href="https://calendly.com/hire-cco-cryptocommerce/new-meeting" target="_blank" rel="noreferrer" className="btn btn-primary">
+                        <a href={BOOKING_URL} target="_blank" rel="noreferrer" onClick={(e) => { e.preventDefault(); openBooking(BOOKING_URL); }} className="btn btn-primary">
                           📅 Book Investor Meeting
                         </a>
                         <a href="https://cryptocommerce.nuclino-site.com/Pitch%20Deck-c7f00010-c5f9-486c-b8a0-a8fbd7af58bb" target="_blank" rel="noreferrer" className="btn btn-outline">

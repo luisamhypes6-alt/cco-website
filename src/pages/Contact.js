@@ -1,4 +1,7 @@
 import React from 'react';
+import { useBooking } from '../components/BookingGate';
+
+const BOOKING_URL = 'https://calendly.com/hire-cco-cryptocommerce/new-meeting';
 
 const contactMethods = [
   {
@@ -44,6 +47,8 @@ const faqs = [
 ];
 
 export default function Contact() {
+  const { openBooking } = useBooking();
+  const isBooking = (link) => link === BOOKING_URL;
   return (
     <>
       {/* HERO */}
@@ -81,6 +86,7 @@ export default function Contact() {
                 href={c.link}
                 target={c.link.startsWith('mailto') ? '_self' : '_blank'}
                 rel="noreferrer"
+                onClick={isBooking(c.link) ? (e) => { e.preventDefault(); openBooking(c.link); } : undefined}
                 className="contact-item"
                 style={{ textDecoration: 'none' }}
               >
@@ -90,7 +96,13 @@ export default function Contact() {
                     <h3>{c.title}</h3>
                     <span style={{ fontSize: '11px', color: 'var(--accent)', fontFamily: 'Space Mono, monospace' }}>{c.subtitle}</span>
                   </div>
-                  <a href={c.link} target="_blank" rel="noreferrer" style={{ fontWeight: '600', fontSize: '13px', display: 'block', marginBottom: '6px' }}>{c.value}</a>
+                  <a
+                    href={c.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={isBooking(c.link) ? (e) => { e.preventDefault(); openBooking(c.link); } : undefined}
+                    style={{ fontWeight: '600', fontSize: '13px', display: 'block', marginBottom: '6px' }}
+                  >{c.value}</a>
                   <p>{c.desc}</p>
                 </div>
               </a>
@@ -138,7 +150,13 @@ export default function Contact() {
           <p className="section-desc" style={{ margin: '0 auto 32px' }}>
             Our team is ready to walk you through CryptoCart, discuss partnership opportunities, or answer any questions you have about the CC ecosystem.
           </p>
-          <a className="btn btn-primary" href="https://calendly.com/hire-cco-cryptocommerce/new-meeting" target="_blank" rel="noreferrer">
+          <a
+            className="btn btn-primary"
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noreferrer"
+            onClick={(e) => { e.preventDefault(); openBooking(BOOKING_URL); }}
+          >
             📅 Schedule on Calendly
           </a>
         </div>
